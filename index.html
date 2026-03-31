@@ -12,6 +12,7 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
 :root{--primary:#F97316;--green:#22C55E;--dark:#121a2d;--card:#1e2a42;--border:#2a3654;--muted:#7a8ba8;--red:#EF4444;--blue:#3B82F6}
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:5rem;right:5rem;width:24rem;height:24rem;border-radius:50%;background:var(--primary);filter:blur(120px);opacity:.08}
+.hero::after{content:'';position:absolute;bottom:5rem;left:5rem;width:18rem;height:18rem;border-radius:50%;background:var(--blue);filter:blur(100px);opacity:.06}
 .hero h1{font-size:3rem;font-weight:900;margin-bottom:1rem}
 .hero h1 span{color:var(--primary)}
 .hero p{color:var(--muted);font-size:1.1rem;max-width:28rem;margin-bottom:2rem}
@@ -20,6 +21,18 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-ghost{background:transparent;border:1px solid var(--border);color:#ddd;padding:.5rem 1rem;border-radius:.75rem;font-size:.85rem;cursor:pointer;font-family:inherit}
 .btn-sm{padding:.5rem 1rem;font-size:.85rem;border-radius:.75rem}
+
+/* Services badges */
+.services{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;width:100%;max-width:32rem;margin-bottom:2.5rem}
+.service-badge{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.2rem 1.5rem;flex:1;min-width:8rem;transition:all .3s;cursor:default}
+.service-badge:hover{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.25);transform:translateY(-4px)}
+.service-badge .badge-icon{width:3.5rem;height:3.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.service-badge:nth-child(1) .badge-icon{background:rgba(59,130,246,.15)}
+.service-badge:nth-child(2) .badge-icon{background:rgba(249,115,22,.15)}
+.service-badge:nth-child(3) .badge-icon{background:rgba(34,197,94,.15)}
+.service-badge .badge-label{font-size:.85rem;font-weight:700;color:#ddd}
+.service-badge .badge-desc{font-size:.65rem;color:var(--muted);line-height:1.4}
+
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;width:100%;max-width:28rem;margin-top:2rem}
 @media(min-width:768px){.stats{grid-template-columns:repeat(4,1fr)}}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:.75rem;padding:1rem;text-align:center}
@@ -71,6 +84,7 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
 .confirmed .row .lbl{color:var(--muted)}
 .confirmed .row .val{font-weight:700}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
@@ -83,6 +97,26 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
   </div>
   <h1>اطلب <span>كرين</span> الآن</h1>
   <p>سحب سيارتك بأمان وسرعة. حدد موقعك واحصل على أقرب كرين خلال دقائق</p>
+
+  <!-- Service Badges -->
+  <div class="services">
+    <div class="service-badge" style="animation:float 3s ease-in-out infinite">
+      <div class="badge-icon">🚗</div>
+      <div class="badge-label">سيارات</div>
+      <div class="badge-desc">نقل جميع أنواع السيارات</div>
+    </div>
+    <div class="service-badge" style="animation:float 3s ease-in-out infinite .5s">
+      <div class="badge-icon">🔧</div>
+      <div class="badge-label">تصليح</div>
+      <div class="badge-desc">إصلاح الأعطال في الموقع</div>
+    </div>
+    <div class="service-badge" style="animation:float 3s ease-in-out infinite 1s">
+      <div class="badge-icon">🚛</div>
+      <div class="badge-label">كرين</div>
+      <div class="badge-desc">سحب ورفع احترافي</div>
+    </div>
+  </div>
+
   <button class="btn" onclick="startOrder()">📍 ابدأ الطلب</button>
   <div class="stats">
     <div class="stat"><div class="val">50+</div><div class="lbl">كرين متوفر</div></div>
