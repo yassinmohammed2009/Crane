@@ -149,8 +149,19 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
       </div>
     </div>
 
+    <!-- Service type -->
+    <div>
+      <label style="font-size:.8rem;font-weight:600;display:block;margin-bottom:.5rem">نوع الخدمة</label>
+      <div class="problems">
+        <button class="prob-btn" onclick="selectService(this,'tow')">🚛 نقل السيارة</button>
+        <button class="prob-btn" onclick="selectService(this,'repair')">🔧 تصليح بالموقع</button>
+        <button class="prob-btn" onclick="selectService(this,'battery')">🔋 اشتراك بطارية</button>
+        <button class="prob-btn" onclick="selectService(this,'tire')">🛞 تبديل تاير</button>
+      </div>
+    </div>
+
     <!-- Destination search -->
-    <div class="search-group">
+    <div class="search-group" id="destGroup" style="display:none">
       <label style="font-size:.8rem;font-weight:600">الوجهة</label>
       <div class="search-row">
         <div class="search-wrap" id="destSearchWrap">
@@ -165,20 +176,12 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
     <div id="driverInfo" style="display:none"></div>
     <div id="metricsPanel" style="display:none"></div>
 
-    <!-- Problem type -->
-    <div>
-      <label style="font-size:.8rem;font-weight:600;display:block;margin-bottom:.5rem">نوع المشكلة</label>
-      <div class="problems">
-        <button class="prob-btn" onclick="selectProblem(this,'breakdown')">⚡ عطل ميكانيكي</button>
-        <button class="prob-btn" onclick="selectProblem(this,'accident')">⚠️ حادث مروري</button>
-        <button class="prob-btn" onclick="selectProblem(this,'flat')">🔘 إطار مثقوب</button>
-        <button class="prob-btn" onclick="selectProblem(this,'battery')">🔋 بطارية فارغة</button>
-      </div>
-    </div>
+   
 
     <div class="field"><label>نوع السيارة</label><div style="position:relative"><span class="icon">🚗</span><input id="carTypeInput" placeholder="مثال: تويوتا كورولا 2020"></div></div>
     <div class="field"><label>رقم الهاتف</label><div style="position:relative"><span class="icon">📱</span><input id="phoneInput" placeholder="07xxxxxxxxx" type="tel"></div></div>
     
+    <div style="font-size:.75rem;color:var(--muted);line-height:1.6">سيتم محاولة إصلاح السيارة في موقعك أولاً، وإذا تعذر ذلك سيتم نقلها إلى الوجهة المحددة.</div>
     <button class="btn" id="submitBtn" onclick="confirmOrder()" disabled style="width:100%;padding:1rem;font-size:1.1rem">تأكيد الطلب</button>
   </div>
 </div>
@@ -211,7 +214,13 @@ const DRIVERS = [
 ];
 
 function haversine(a,b){const R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,la=a[0]*Math.PI/180,lb=b[0]*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(la)*Math.cos(lb)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
-function calcPrice(d){return 5000+Math.round(d)*1000}
+function calcPrice(d){
+  if(selectedProblem==='battery') return 3000;
+  if(selectedProblem==='tire') return 3000;
+  if(selectedProblem==='repair') return 4000;
+  if(selectedProblem==='tow') return 5000+Math.round(d)*1000;
+  return 7000+Math.round(d)*1000;
+}
 function calcETA(d,s){return Math.max(2,Math.round(d/s*60))}
 function findNearest(pos){let n=DRIVERS[0],m=Infinity;DRIVERS.forEach(d=>{const dist=haversine(pos,d.pos);if(dist<m){m=dist;n=d}});return{driver:n,dist:m}}
 
@@ -308,7 +317,23 @@ function showDropdown(type){const dd=document.getElementById(type==='car'?'carDr
 function hideDropdown(type){document.getElementById(type==='car'?'carDropdown':'destDropdown').classList.remove('show')}
 document.addEventListener('click',e=>{if(!document.getElementById('carSearchWrap').contains(e.target))hideDropdown('car');if(!document.getElementById('destSearchWrap').contains(e.target))hideDropdown('dest')});
 
-function selectProblem(btn,id){document.querySelectorAll('.prob-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selectedProblem=id;checkSubmit()}
+function selectService(btn,id){
+  document.querySelectorAll('.prob-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedProblem=id;
+  const destGroup=document.getElementById('destGroup');
+  if(id==='tow'){
+    destGroup.style.display='flex';
+  }else{
+    destGroup.style.display='none';
+    destLoc=carLoc;
+  }
+  if(id==='tow'){
+    destGroup.style.display='flex';
+    if(!document.getElementById('destSearchInput').value) destLoc=null;
+  }
+  checkSubmit();
+}
 function checkSubmit(){const ok=selectedProblem&&document.getElementById('carTypeInput').value&&document.getElementById('phoneInput').value&&carLoc&&destLoc;document.getElementById('submitBtn').disabled=!ok}
 document.getElementById('carTypeInput').addEventListener('input',checkSubmit);
 document.getElementById('phoneInput').addEventListener('input',checkSubmit);
