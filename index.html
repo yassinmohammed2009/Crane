@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>كرين سريع - خدمة سحب السيارات</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-height:100vh}
@@ -85,116 +86,104 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
 .confirmed .row .val{font-weight:700}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.hero::before, .hero::after { pointer-events: none; }
 </style>
 </head>
 <body>
-
 <!-- HERO -->
 <div class="hero" id="heroPage">
-  <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);border-radius:2rem;padding:.4rem 1rem;margin-bottom:1.5rem">
-    <span style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite"></span>
-    <span style="font-size:.8rem;color:rgba(255,255,255,.7)">متوفرون الآن</span>
-  </div>
-  <h1>اطلب <span>كرين</span> الآن</h1>
-  <p>سحب سيارتك بأمان وسرعة. حدد موقعك واحصل على أقرب كرين خلال دقائق</p>
-
-  <!-- Service Badges -->
-  <div class="services">
-    <div class="service-badge" style="animation:float 3s ease-in-out infinite">
-      <div class="badge-icon">🚗</div>
-      <div class="badge-label">سيارات</div>
-      <div class="badge-desc">نقل جميع أنواع السيارات</div>
-    </div>
-    <div class="service-badge" style="animation:float 3s ease-in-out infinite .5s">
-      <div class="badge-icon">🔧</div>
-      <div class="badge-label">تصليح</div>
-      <div class="badge-desc">إصلاح الأعطال في الموقع</div>
-    </div>
-    <div class="service-badge" style="animation:float 3s ease-in-out infinite 1s">
-      <div class="badge-icon">🚛</div>
-      <div class="badge-label">كرين</div>
-      <div class="badge-desc">سحب ورفع احترافي</div>
-    </div>
-  </div>
-
-  <button class="btn" onclick="startOrder()">📍 ابدأ الطلب</button>
-  <div class="stats">
-    <div class="stat"><div class="val">50+</div><div class="lbl">كرين متوفر</div></div>
-    <div class="stat"><div class="val">8 دقائق</div><div class="lbl">متوسط الوصول</div></div>
-    <div class="stat"><div class="val">12</div><div class="lbl">مدينة مغطاة</div></div>
-    <div class="stat"><div class="val">24/7</div><div class="lbl">خدمة</div></div>
-  </div>
+<div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);border-radius:2rem;padding:.4rem 1rem;margin-bottom:1.5rem">
+<span style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite"></span>
+<span style="font-size:.8rem;color:rgba(255,255,255,.7)">متوفرون الآن</span>
 </div>
-
+<h1>اطلب <span>كرين</span> الآن</h1>
+<p>سحب سيارتك بأمان وسرعة. حدد موقعك واحصل على أقرب كرين خلال دقائق</p>
+<!-- Service Badges -->
+<div class="services">
+<div class="service-badge" style="animation:float 3s ease-in-out infinite">
+<div class="badge-icon">🚗</div>
+<div class="badge-label">سيارات</div>
+<div class="badge-desc">نقل جميع أنواع السيارات</div>
+</div>
+<div class="service-badge" style="animation:float 3s ease-in-out infinite .5s">
+<div class="badge-icon">🔧</div>
+<div class="badge-label">تصليح</div>
+<div class="badge-desc">إصلاح الأعطال في الموقع</div>
+</div>
+<div class="service-badge" style="animation:float 3s ease-in-out infinite 1s">
+<div class="badge-icon">🚛</div>
+<div class="badge-label">كرين</div>
+<div class="badge-desc">سحب ورفع احترافي</div>
+</div>
+</div>
+<button class="btn" onclick="startOrder()" type="button">📍 ابدأ الطلب</button>
+<div class="stats">
+<div class="stat"><div class="val">50+</div><div class="lbl">كرين متوفر</div></div>
+<div class="stat"><div class="val">8 دقائق</div><div class="lbl">متوسط الوصول</div></div>
+<div class="stat"><div class="val">12</div><div class="lbl">مدينة مغطاة</div></div>
+<div class="stat"><div class="val">24/7</div><div class="lbl">خدمة</div></div>
+</div>
+</div>
 <!-- ORDER PAGE -->
 <div class="app" id="orderPage">
-  <div class="topbar">
-    <button class="btn-ghost" onclick="goHome()">→</button>
-    <span style="font-size:1.1rem">🚛</span>
-    <h1>اطلب كرين</h1>
-  </div>
-  <div class="content">
-    <div id="map"></div>
-    
-    <!-- Car location search -->
-    <div class="search-group">
-      <label style="font-size:.8rem;font-weight:600">موقع السيارة</label>
-      <div class="search-row">
-        <div class="search-wrap" id="carSearchWrap">
-          <span class="icon">🔍</span>
-          <input id="carSearchInput" placeholder="ابحث عن موقع السيارة..." oninput="debounceSearch(this.value,'car')" onfocus="showDropdown('car')">
-          <div class="search-dropdown" id="carDropdown"></div>
-        </div>
-        <button class="btn btn-sm" id="carMapBtn" onclick="toggleSelect('car')">📍 الخريطة</button>
-      </div>
-    </div>
-
-    <!-- Service type -->
-    <div>
-      <label style="font-size:.8rem;font-weight:600;display:block;margin-bottom:.5rem">نوع الخدمة</label>
-      <div class="problems">
-        <button class="prob-btn" onclick="selectService(this,'tow')">🚛 نقل السيارة</button>
-        <button class="prob-btn" onclick="selectService(this,'repair')">🔧 تصليح بالموقع</button>
-        <button class="prob-btn" onclick="selectService(this,'battery')">🔋 اشتراك بطارية</button>
-        <button class="prob-btn" onclick="selectService(this,'tire')">🛞 تبديل تاير</button>
-      </div>
-    </div>
-
-    <!-- Destination search -->
-    <div class="search-group" id="destGroup" style="display:none">
-      <label style="font-size:.8rem;font-weight:600">الوجهة</label>
-      <div class="search-row">
-        <div class="search-wrap" id="destSearchWrap">
-          <span class="icon">🔍</span>
-          <input id="destSearchInput" placeholder="ابحث عن الوجهة..." oninput="debounceSearch(this.value,'dest')" onfocus="showDropdown('dest')">
-          <div class="search-dropdown" id="destDropdown"></div>
-        </div>
-        <button class="btn btn-sm" id="destMapBtn" onclick="toggleSelect('dest')">🧭 الخريطة</button>
-      </div>
-    </div>
-
-    <div id="driverInfo" style="display:none"></div>
-    <div id="metricsPanel" style="display:none"></div>
-
-   
-
-    <div class="field"><label>نوع السيارة</label><div style="position:relative"><span class="icon">🚗</span><input id="carTypeInput" placeholder="مثال: تويوتا كورولا 2020"></div></div>
-    <div class="field"><label>رقم الهاتف</label><div style="position:relative"><span class="icon">📱</span><input id="phoneInput" placeholder="07xxxxxxxxx" type="tel"></div></div>
-    
-    <div style="font-size:.75rem;color:var(--muted);line-height:1.6">سيتم محاولة إصلاح السيارة في موقعك أولاً، وإذا تعذر ذلك سيتم نقلها إلى الوجهة المحددة.</div>
-    <button class="btn" id="submitBtn" onclick="confirmOrder()" disabled style="width:100%;padding:1rem;font-size:1.1rem">تأكيد الطلب</button>
-  </div>
+<div class="topbar">
+<button class="btn-ghost" onclick="goHome()">→</button>
+<span style="font-size:1.1rem">🚛</span>
+<h1>اطلب كرين</h1>
 </div>
-
+<div class="content">
+<div id="map"></div>
+<!-- Car location search -->
+<div class="search-group">
+<label style="font-size:.8rem;font-weight:600">موقع السيارة</label>
+<div class="search-row">
+<div class="search-wrap" id="carSearchWrap">
+<span class="icon">🔍</span>
+<input id="carSearchInput" onfocus="showDropdown('car')" oninput="debounceSearch(this.value,'car')" placeholder="ابحث عن موقع السيارة..."/>
+<div class="search-dropdown" id="carDropdown"></div>
+</div>
+<button class="btn btn-sm" id="carMapBtn" onclick="toggleSelect('car')">📍 الخريطة</button>
+</div>
+</div>
+<!-- Service type -->
+<div>
+<label style="font-size:.8rem;font-weight:600;display:block;margin-bottom:.5rem">نوع الخدمة</label>
+<div class="problems">
+<button class="prob-btn" onclick="selectService(this,'tow')">🚛 نقل السيارة</button>
+<button class="prob-btn" onclick="selectService(this,'repair')">🔧 تصليح بالموقع</button>
+<button class="prob-btn" onclick="selectService(this,'battery')">🔋 اشتراك بطارية</button>
+<button class="prob-btn" onclick="selectService(this,'tire')">🛞 تبديل تاير</button>
+</div>
+</div>
+<!-- Destination search -->
+<div class="search-group" id="destGroup" style="display:none">
+<label style="font-size:.8rem;font-weight:600">الوجهة</label>
+<div class="search-row">
+<div class="search-wrap" id="destSearchWrap">
+<span class="icon">🔍</span>
+<input id="destSearchInput" onfocus="showDropdown('dest')" oninput="debounceSearch(this.value,'dest')" placeholder="ابحث عن الوجهة..."/>
+<div class="search-dropdown" id="destDropdown"></div>
+</div>
+<button class="btn btn-sm" id="destMapBtn" onclick="toggleSelect('dest')">🧭 الخريطة</button>
+</div>
+</div>
+<div id="driverInfo" style="display:none"></div>
+<div id="metricsPanel" style="display:none"></div>
+<div class="field"><label>نوع السيارة</label><div style="position:relative"><span class="icon">🚗</span><input id="carTypeInput" placeholder="مثال: تويوتا كورولا 2020"/></div></div>
+<div class="field"><label>رقم الهاتف</label><div style="position:relative"><span class="icon">📱</span><input id="phoneInput" placeholder="07xxxxxxxxx" type="tel"/></div></div>
+<div style="font-size:.75rem;color:var(--muted);line-height:1.6">سيتم محاولة إصلاح السيارة في موقعك أولاً، وإذا تعذر ذلك سيتم نقلها إلى الوجهة المحددة.</div>
+<button class="btn" disabled="" id="submitBtn" onclick="confirmOrder()" style="width:100%;padding:1rem;font-size:1.1rem">تأكيد الطلب</button>
+</div>
+</div>
 <!-- CONFIRMED -->
 <div class="confirmed" id="confirmedPage">
-  <div class="check">✅</div>
-  <h2>تم العثور على أقرب كرين!</h2>
-  <p style="color:var(--muted)">السائق في الطريق إليك</p>
-  <div class="detail" id="confirmDetail"></div>
-  <button class="btn" onclick="goHome()" style="margin-top:1rem">طلب جديد</button>
+<div class="check">✅</div>
+<h2>تم العثور على أقرب كرين!</h2>
+<p style="color:var(--muted)">السائق في الطريق إليك</p>
+<div class="detail" id="confirmDetail"></div>
+<button class="btn" onclick="goHome()" style="margin-top:1rem">طلب جديد</button>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // State
@@ -299,7 +288,7 @@ function debounceSearch(val,type){
 async function searchLocation(q,type){
   if(q.trim().length<2){hideDropdown(type);return}
   try{
-    const res=await fetch('https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(q)+'&limit=5&accept-language=ar');
+    const res=await fetch('https://geocode.maps.co/search?q=' + encodeURIComponent(q));
     const data=await res.json();
     const dd=document.getElementById(type==='car'?'carDropdown':'destDropdown');
     if(data.length===0){hideDropdown(type);return}
