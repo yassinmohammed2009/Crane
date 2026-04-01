@@ -182,9 +182,33 @@ body{font-family:'Tajawal',sans-serif;background:#121a2d;color:#f0f2f5;min-heigh
 <h2>تم العثور على أقرب كرين!</h2>
 <p style="color:var(--muted)">السائق في الطريق إليك</p>
 <div class="detail" id="confirmDetail"></div>
+
+<div style="margin-top:1rem">
+  <div style="font-weight:700;margin-bottom:.5rem">قيّم السائق</div>
+  <div id="ratingStars" style="font-size:1.8rem;cursor:pointer">
+    <span onclick="rate(1)">⭐</span>
+    <span onclick="rate(2)">⭐</span>
+    <span onclick="rate(3)">⭐</span>
+    <span onclick="rate(4)">⭐</span>
+    <span onclick="rate(5)">⭐</span>
+  </div>
+  <div id="ratingText" style="font-size:.8rem;color:#7a8ba8;margin-top:.3rem"></div>
+</div>
+
 <button class="btn" onclick="goHome()" style="margin-top:1rem">طلب جديد</button>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js">
+let selectedRating = 0;
+function rate(n){
+  selectedRating = n;
+  const stars = document.querySelectorAll('#ratingStars span');
+  stars.forEach((s,i)=>{
+    s.style.opacity = i < n ? '1' : '0.3';
+  });
+  document.getElementById('ratingText').innerText = 'تم التقييم: ' + n + ' نجوم ⭐';
+}
+
+</script>
 <script>
 // State
 let map, carMarker, destMarker, routeLine, selectMode=null, carLoc=null, destLoc=null, selectedProblem='';
@@ -288,7 +312,7 @@ function debounceSearch(val,type){
 async function searchLocation(q,type){
   if(q.trim().length<2){hideDropdown(type);return}
   try{
-    const res=await fetch('https://geocode.maps.co/search?q=' + encodeURIComponent(q));
+    const res=await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(q));
     const data=await res.json();
     const dd=document.getElementById(type==='car'?'carDropdown':'destDropdown');
     if(data.length===0){hideDropdown(type);return}
@@ -336,6 +360,17 @@ function confirmOrder(){
   document.getElementById('confirmedPage').style.display='flex';
   document.getElementById('confirmDetail').innerHTML='<div class="row"><span class="lbl">السائق</span><span class="val">'+nd.name+'</span></div><div class="row"><span class="lbl">رقم اللوحة</span><span class="val">'+nd.plate+'</span></div><div class="row"><span class="lbl">الهاتف</span><span class="val">'+nd.phone+'</span></div><div class="row"><span class="lbl">التقييم</span><span class="val">⭐ '+nd.rating+'</span></div><hr style="border-color:var(--border);margin:.5rem 0"><div class="row"><span class="lbl">المسافة</span><span class="val">'+rd.toFixed(1)+' كم</span></div><div class="row"><span class="lbl">وقت الوصول</span><span class="val" style="color:var(--primary)">'+eta+' دقيقة</span></div><div class="row"><span class="lbl">السعر</span><span class="val" style="color:var(--green);font-size:1.1rem">'+price.toLocaleString()+' دينار</span></div>';
 }
+
+let selectedRating = 0;
+function rate(n){
+  selectedRating = n;
+  const stars = document.querySelectorAll('#ratingStars span');
+  stars.forEach((s,i)=>{
+    s.style.opacity = i < n ? '1' : '0.3';
+  });
+  document.getElementById('ratingText').innerText = 'تم التقييم: ' + n + ' نجوم ⭐';
+}
+
 </script>
 </body>
 </html>
